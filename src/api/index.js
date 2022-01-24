@@ -1,16 +1,22 @@
+import React from "react";
+import ReactDOM from 'react-dom';
+
+
+
 /**
  * This file features and exports all of your calls to the API
  * 
  * You need to replace YOUR_API_KEY in the string associated with KEY with your actual API key
  */
 export const BASE_URL = 'https://api.harvardartmuseums.org';
-export const KEY = 'apikey=YOUR_API_KEY';
+export const KEY = 'apikey=641801d0-e2d5-4766-be4d-716d8556ea85';
 
 /**
  * This will make a call to the API for a single term and value (e.g. "person", and "unknown"), and return the result
  */
 export async function fetchQueryResultsFromTermAndValue(term, value) {
   try {
+    // const response = await fetch(`${ BASE_URL }/object?${ KEY }&${ term }=${ encodeURI(value.split('-').join('|')) }`);
     const response = await fetch(`${ BASE_URL }/object?${ KEY }&${ term }=${ encodeURI(value.split('-').join('|')) }`);
     const data = await response.json();
 
@@ -54,8 +60,10 @@ export async function fetchQueryResults({
     return data;
   } catch (error) {
     throw error;
-  }
+  } 
 }
+
+
 
 /**
  * This returns early if there are centuries stored in localStorage, or fetches them from the API and stores them in localStorage if not
